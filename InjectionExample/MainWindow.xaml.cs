@@ -1,5 +1,4 @@
-﻿using InjectionExample.model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using InjectionExample.model;
+using InjectionExample.model.repos;
 
 namespace InjectionExample
 {
@@ -30,14 +31,34 @@ namespace InjectionExample
             InitializeComponent();
 
             StudentRepository = new BadStudentRepository();
-
-            RefreshStudentList();
+            // StudentRepository = new BetterStudentRepository();
+            // StudentRepository = new BestStudentRepository();
         }
 
-        public void RefreshStudentList()
+        private void refreshList(List<Student> students)
         {
-            this.studentList.Items.Clear();
-            this.studentList.ItemsSource = this.StudentRepository.GetStudents();
+            this.studentList.ItemsSource = students;
+        }
+
+        private void btnGetAll_Click(object sender, RoutedEventArgs e)
+        {
+            List<Student> students = this.StudentRepository.GetStudents();
+            refreshList(students);
+            
+        }
+
+        private void btnGetByLastName_Click(object sender, RoutedEventArgs e)
+        {
+            string lastName = this.txtLastName.Text;
+            List<Student> students = this.StudentRepository.GetStudentsByLastName(lastName);
+
+            refreshList(students);
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            List<Student> students = this.StudentRepository.ResetStudentsTable();
+            refreshList(students);
         }
     }
 }

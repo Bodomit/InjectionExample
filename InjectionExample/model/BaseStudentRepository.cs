@@ -16,6 +16,15 @@ namespace InjectionExample.model
             DatabaseConnection = new SqlConnection(connectionString);
         }
 
+        public List<Student> ResetStudentsTable()
+        {
+            SqlCommand cmd = DatabaseConnection.CreateCommand();
+            cmd.CommandText = "[dbo].[ResetStudentsTable]";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            return runSqlCmd(cmd);
+        }
+
         protected List<Student> runSqlCmd(SqlCommand cmd)
         {
             using SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
@@ -42,6 +51,7 @@ namespace InjectionExample.model
 
         public abstract List<Student> GetStudents();
         public abstract List<Student> GetStudentsByLastName(string lastName);
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

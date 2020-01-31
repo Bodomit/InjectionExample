@@ -16,15 +16,16 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding StudentID}"/>
-                    <GridViewColumn Header="First" DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}"/>
                     <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}"/>
                     <GridViewColumn Header="DOB" DisplayMemberBinding="{Binding DOB}"/>
                     <GridViewColumn Header="Phone Number" DisplayMemberBinding="{Binding Phone}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="28">
             <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
@@ -32,6 +33,13 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
+
+            <Label Content="Last Name: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+            <TextBox Name="txtLastName" Grid.Row="0" Grid.Column="1" Margin="5"/>
+            <Button Name="btnGetAll" Content="Get All" Grid.Row="1" Grid.Column="0" Margin="5" Click="btnGetAll_Click" />
+            <Button Name="btnGetByLastName" Content="Get By Last Name" Grid.Row="1" Grid.Column="1" Margin="5" Click="btnGetByLastName_Click" />
+            <Button Name="btnReset" Content="Recreate Table" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Click="btnReset_Click" />
+
         </Grid>
     </Grid>
 </Window>

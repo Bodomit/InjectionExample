@@ -8,5 +8,6 @@ namespace InjectionExample.model
     {
         List<Student> GetStudents();
         List<Student> GetStudentsByLastName(string lastName);
+        List<Student> ResetStudentsTable();
     }
 }
